@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Luxury Travel</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family:'Poppins',sans-serif;
+    }
+
+    html{
+      scroll-behavior:smooth;
+    }
+
+    body{
+      background:#0b0f1a;
+      color:white;
+      overflow-x:hidden;
+    }
+
+    /* ================= NAVBAR ================= */
+
+    header{
+      width:100%;
+      position:fixed;
+      top:0;
+      left:0;
+      z-index:1000;
+      padding:20px 8%;
+      backdrop-filter:blur(10px);
+      background:rgba(0,0,0,0.2);
+      border-bottom:1px solid rgba(255,255,255,0.1);
+    }
+
+    nav{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+    }
+
+    .logo{
+      font-size:30px;
+      font-weight:700;
+      color:#fff;
+      letter-spacing:1px;
+    }
+
+    .logo span{
+      color:#00d9ff;
+    }
+
+    nav ul{
+      display:flex;
+      list-style:none;
+      gap:35px;
+    }
+
+    nav ul li a{
+      color:white;
+      text-decoration:none;
+      font-size:16px;
+      transition:0.3s;
+      position:relative;
+    }
+
+    nav ul li a::after{
+      content:'';
+      position:absolute;
+      left:0;
+      bottom:-6px;
+      width:0%;
+      height:2px;
+      background:#00d9ff;
+      transition:0.4s;
+    }
+
+    nav ul li a:hover::after{
+      width:100%;
+    }
+
+    /* ================= HERO SECTION ================= */
+
+    .hero{
+      width:100%;
+      height:100vh;
+      background:
+      linear-gradient(rgba(0,0,0,0.45),
+      rgba(0,0,0,0.55)),
+      url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e')
+      center/cover no-repeat;
+
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+      padding:0 10%;
+    }
+
+    .hero-content{
+      max-width:850px;
+      animation:fadeIn 1.5s ease;
+    }
+
+    .hero-content h1{
+      font-size:78px;
+      line-height:1.1;
+      margin-bottom:25px;
+      font-weight:700;
+    }
+
+    .hero-content h1 span{
+      color:#00d9ff;
+    }
+
+    .hero-content p{
+      font-size:20px;
+      color:#d9d9d9;
+      margin-bottom:35px;
+      line-height:1.8;
+    }
+
+    .hero-buttons{
+      display:flex;
+      justify-content:center;
+      gap:20px;
+      flex-wrap:wrap;
+    }
+
+    .btn{
+      padding:15px 38px;
+      border:none;
+      border-radius:50px;
+      font-size:16px;
+      cursor:pointer;
+      transition:0.4s;
+      text-decoration:none;
+      font-weight:600;
+    }
+
+    .primary-btn{
+      background:#00d9ff;
+      color:#000;
+      box-shadow:0 10px 30px rgba(0,217,255,0.4);
+    }
+
+    .primary-btn:hover{
+      transform:translateY(-5px);
+      background:white;
+    }
+
+    .secondary-btn{
+      border:1px solid rgba(255,255,255,0.4);
+      color:white;
+      background:transparent;
+    }
+
+    .secondary-btn:hover{
+      background:white;
+      color:black;
+      transform:translateY(-5px);
+    }
+
+    /* ================= DESTINATIONS ================= */
+
+    .destinations{
+      padding:120px 8%;
+      background:#0f1729;
+    }
+
+    .section-title{
+      text-align:center;
+      margin-bottom:70px;
+    }
+
+    .section-title h2{
+      font-size:50px;
+      margin-bottom:15px;
+    }
+
+    .section-title p{
+      color:#b7b7b7;
+      font-size:18px;
+    }
+
+    .destination-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+      gap:30px;
+    }
+
+    .card{
+      position:relative;
+      overflow:hidden;
+      border-radius:25px;
+      height:450px;
+      cursor:pointer;
+      transition:0.5s;
+      box-shadow:0 15px 40px rgba(0,0,0,0.4);
+    }
+
+    .card:hover{
+      transform:translateY(-10px);
+    }
+
+    .card img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      transition:0.6s;
+    }
+
+    .card:hover img{
+      transform:scale(1.1);
+    }
+
+    .overlay{
+      position:absolute;
+      inset:0;
+      background:linear-gradient(to top,
+      rgba(0,0,0,0.9),
+      rgba(0,0,0,0.1));
+      display:flex;
+      flex-direction:column;
+      justify-content:flex-end;
+      padding:30px;
+    }
+
+    .overlay h3{
+      font-size:32px;
+      margin-bottom:10px;
+    }
+
+    .overlay p{
+      color:#ddd;
+      font-size:15px;
+      line-height:1.7;
+    }
+
+    /* ================= ABOUT ================= */
+
+    .about{
+      padding:120px 8%;
+      display:flex;
+      gap:60px;
+      align-items:center;
+      flex-wrap:wrap;
+      background:#08101f;
+    }
+
+    .about-image{
+      flex:1;
+      min-width:300px;
+    }
+
+    .about-image img{
+      width:100%;
+      border-radius:30px;
+      box-shadow:0 20px 40px rgba(0,0,0,0.5);
+    }
+
+    .about-content{
+      flex:1;
+      min-width:300px;
+    }
+
+    .about-content h2{
+      font-size:52px;
+      margin-bottom:25px;
+    }
+
+    .about-content p{
+      color:#cfcfcf;
+      line-height:1.9;
+      margin-bottom:30px;
+      font-size:17px;
+    }
+
+    /* ================= STATS ================= */
+
+    .stats{
+      padding:90px 8%;
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+      gap:25px;
+      background:#0f1729;
+    }
+
+    .stat-box{
+      background:rgba(255,255,255,0.04);
+      border:1px solid rgba(255,255,255,0.08);
+      padding:40px;
+      text-align:center;
+      border-radius:20px;
+      transition:0.4s;
+    }
+
+    .stat-box:hover{
+      transform:translateY(-10px);
+      background:#00d9ff;
+      color:black;
+    }
+
+    .stat-box h3{
+      font-size:45px;
+      margin-bottom:10px;
+    }
+
+    /* ================= FOOTER ================= */
+
+    footer{
+      background:#050b16;
+      padding:35px;
+      text-align:center;
+      border-top:1px solid rgba(255,255,255,0.1);
+    }
+
+    footer p{
+      color:#aaa;
+    }
+
+    /* ================= ANIMATION ================= */
+
+    @keyframes fadeIn{
+
+      from{
+        opacity:0;
+        transform:translateY(40px);
+      }
+
+      to{
+        opacity:1;
+        transform:translateY(0);
+      }
+    }
+
+    /* ================= RESPONSIVE ================= */
+
+    @media(max-width:900px){
+
+      .hero-content h1{
+        font-size:52px;
+      }
+
+      nav ul{
+        display:none;
+      }
+
+      .section-title h2{
+        font-size:40px;
+      }
+
+      .about-content h2{
+        font-size:40px;
+      }
+    }
+
+    @media(max-width:600px){
+
+      .hero-content h1{
+        font-size:40px;
+      }
+
+      .hero-content p{
+        font-size:16px;
+      }
+
+      .btn{
+        width:100%;
+      }
+
+      .section-title h2{
+        font-size:34px;
+      }
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <!-- HEADER -->
+
+  <header>
+
+    <nav>
+
+      <div class="logo">
+        Travel<span>X</span>
+      </div>
+
+      <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Destinations</a></li>
+        <li><a href="#">Experiences</a></li>
+        <li><a href="#">Gallery</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+
+    </nav>
+
+  </header>
+
+  <!-- HERO SECTION -->
+
+  <section class="hero">
+
+    <div class="hero-content">
+
+      <h1>
+        Explore The World's
+        <span>Hidden Beauty</span>
+      </h1>
+
+      <p>
+        Discover luxurious destinations, breathtaking landscapes,
+        and unforgettable travel experiences crafted for dreamers.
+      </p>
+
+      <div class="hero-buttons">
+
+        <a href="#" class="btn primary-btn">
+          Start Journey
+        </a>
+
+        <a href="#" class="btn secondary-btn">
+          Watch Video
+        </a>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- DESTINATIONS -->
+
+  <section class="destinations">
+
+    <div class="section-title">
+      <h2>Popular Destinations</h2>
+      <p>Choose your next dream destination</p>
+    </div>
+
+    <div class="destination-grid">
+
+      <div class="card">
+
+        <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e">
+
+        <div class="overlay">
+          <h3>Maldives</h3>
+          <p>Crystal clear waters, luxury resorts and stunning beaches.</p>
+        </div>
+
+      </div>
+
+      <div class="card">
+
+        <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb">
+
+        <div class="overlay">
+          <h3>Bali</h3>
+          <p>Tropical paradise with magical sunsets and green landscapes.</p>
+        </div>
+
+      </div>
+
+      <div class="card">
+
+        <img src="https://images.unsplash.com/photo-1491553895911-0055eca6402d">
+
+        <div class="overlay">
+          <h3>Switzerland</h3>
+          <p>Experience snowy mountains and luxurious adventures.</p>
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- ABOUT -->
+
+  <section class="about">
+
+    <div class="about-image">
+
+      <img src="https://images.unsplash.com/photo-1526772662000-3f88f10405ff">
+
+    </div>
+
+    <div class="about-content">
+
+      <h2>Luxury Travel Experiences</h2>
+
+      <p>
+        We create premium travel experiences with world-class
+        destinations, luxury accommodations, and unforgettable adventures.
+        Every journey is designed to give travelers comfort, beauty,
+        and memories that last forever.
+      </p>
+
+      <a href="#" class="btn primary-btn">
+        Discover More
+      </a>
+
+    </div>
+
+  </section>
+
+  <!-- STATS -->
+
+  <section class="stats">
+
+    <div class="stat-box">
+      <h3>15K+</h3>
+      <p>Happy Travelers</p>
+    </div>
+
+    <div class="stat-box">
+      <h3>120+</h3>
+      <p>Destinations</p>
+    </div>
+
+    <div class="stat-box">
+      <h3>10+</h3>
+      <p>Years Experience</p>
+    </div>
+
+    <div class="stat-box">
+      <h3>24/7</h3>
+      <p>Support</p>
+    </div>
+
+  </section>
+
+  <!-- FOOTER -->
+
+  <footer>
+
+    <p>
+      © 2026 TravelX. All Rights Reserved.
+    </p>
+
+  </footer>
+
+</body>
+</html>
